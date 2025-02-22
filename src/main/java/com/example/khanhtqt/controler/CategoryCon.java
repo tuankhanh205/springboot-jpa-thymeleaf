@@ -5,8 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class CategoryCon {
-    @GetMapping("/category")
+    @GetMapping("/admin")
     public String ShowCate(){
-        return "views/category";
+        return "admin/index";
     }
+
 }
