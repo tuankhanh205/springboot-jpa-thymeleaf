@@ -40,3 +40,11 @@
 .table-action a.label{
 	margin-left: 5px
 }
+.pt{
+	margin-left: 400px;
+}
+
+/*tieu de backgroun table*/
+.cot{
+	background-color: gray;
+}
