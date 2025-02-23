@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/head::head"></head>
+<body class="hold-transition skin-blue sidebar-mini">
+
+
+<!-- Site wrapper -->
+<div class="wrapper">
+
+    <header th:replace="admin/fragments/header::header"></header>
+
+    <!-- =============================================== -->
+
+    <!-- Left side column. contains the sidebar -->
+    <aside th:replace="admin/fragments/sidebar::sidebar"></aside>
+
+    <!-- =============================================== -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+           <h3>Thêm Mới Danh Mục</h3>
+         <div>
+             <form method="post" th:action="@{/admin/category/add}" th:object="${category}">
+                 <div class="mb-3">
+                     <label for="name" class="form-label">name</label>
+                     <input type="text" class="form-control" id="name" aria-describedby="name" th:field="*{name}">
+                     <span></span>
+                 </div>
+                 <div class="mb-3">
+                     <label for="description" class="form-label">description</label>
+                     <input type="text" class="form-control" id="description" th:field="*{description}">
+                     <span></span>
+                 </div>
+                 <button type="submit" class="btn btn-primary">Submit</button>
+             </form>
+         </div>
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <footer th:replace="admin/fragments/footer::footer"></footer>
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+
+<div th:replace="admin/fragments/script::script"></div>
+</body>
+</html>

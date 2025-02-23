@@ -4,18 +4,14 @@ import com.example.khanhtqt.config.ModelMapperConfig;
 import com.example.khanhtqt.dto.CategoryDto;
 import com.example.khanhtqt.entity.Category;
 import com.example.khanhtqt.repository.CategoryRepository;
-import com.example.khanhtqt.service.common.ProductAdminClientIlm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.lang.module.Configuration;
-import java.util.stream.Collectors;
-
 @Service
-public class AdminCategoryService extends ProductAdminClientIlm {
+public class AdminCategoryService{
     @Autowired
     private ModelMapperConfig modelMapperConfig;
     @Autowired
@@ -25,6 +21,22 @@ public class AdminCategoryService extends ProductAdminClientIlm {
         Pageable pageable= PageRequest.of(page,size);
         return categoryRepository.findAll(pageable).map(this::convertToDto);
     }
+    public void delete(Long id){
+       categoryRepository.deleteById(id);
+    }
+
+    public CategoryDto getOne(Long id){
+       Category category=categoryRepository.findById(id).orElseThrow(()-> new RuntimeException() );
+       return convertToDto(category);
+    }
+
+    public void saveOrUpdate(Category category){
+       categoryRepository.save(category);
+    }
+
+
+
+
 
     private CategoryDto convertToDto(Category category) {
         return modelMapperConfig.modelMapper().map(category, CategoryDto.class);

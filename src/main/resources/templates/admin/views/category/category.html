@@ -25,7 +25,7 @@
 
         <!-- Main content -->
         <section class="content">
-            <button type="button" class="btn btn-info">add category</button>
+            <button type="button" class="btn btn-info"><a th:href="@{/admin/category/showadd}">add category</a></button>
 
 <!--            bảng-->
             <table class="table table-hover table-bordered text-center align-middle shadow-sm rounded">
@@ -46,10 +46,11 @@
                     <td th:text="${category.description}"></td>
                     <td>
                         <button class="btn btn-sm btn-warning text-white shadow-sm">
-                            <i class="fas fa-edit"></i> Edit
+                            <i class="fa fa-edit"></i><a th:href="@{/admin/category/showupdate/{id}(id=${category.id})}">edit</a>
                         </button>
                         <button class="btn btn-sm btn-danger shadow-sm">
-                            <i class="fas fa-trash"></i> Delete
+                            <i class="fa fa-fw fa-trash-o"></i>
+                            <a th:href="@{/admin/category/delete/{id}(id=${category.id})}">delete</a>
                         </button>
                     </td>
                 </tr>

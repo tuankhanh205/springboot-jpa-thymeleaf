@@ -1,60 +1,32 @@
-package com.example.khanhtqt.entity;
-
-import jakarta.persistence.*;
-import lombok.*;
+package com.example.khanhtqt.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
-@Table(name = "products")
-
-public class Product {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProductDto {
     private Long id;
-
-    @Column(nullable = false)
     private String name;
-
-    @Column
     private String description;
-
-    @Column(nullable = false)
     private BigDecimal price;
-
-    @Column
     private String image;
-
     private Integer stock;
-
-    private String sku;
-
-    @Column
     private LocalDateTime createdAt;
+    private String sku;
+    private List<ProductAttributeDto> productAttributes;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductAttribute> productAttributes;
-
-    public Product() {
+    public ProductDto() {
     }
 
-    public Product(Long id, String name, String description, BigDecimal price, String image, Integer stock, String sku, LocalDateTime createdAt, Category category, List<ProductAttribute> productAttributes) {
+    public ProductDto(Long id, String name, String description, BigDecimal price, String image, Integer stock, LocalDateTime createdAt, String sku, List<ProductAttributeDto> productAttributes) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.image = image;
         this.stock = stock;
-        this.sku = sku;
         this.createdAt = createdAt;
-        this.category = category;
+        this.sku = sku;
         this.productAttributes = productAttributes;
     }
 
@@ -106,14 +78,6 @@ public class Product {
         this.stock = stock;
     }
 
-    public String getSku() {
-        return sku;
-    }
-
-    public void setSku(String sku) {
-        this.sku = sku;
-    }
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -122,19 +86,19 @@ public class Product {
         this.createdAt = createdAt;
     }
 
-    public Category getCategory() {
-        return category;
+    public String getSku() {
+        return sku;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setSku(String sku) {
+        this.sku = sku;
     }
 
-    public List<ProductAttribute> getProductAttributes() {
+    public List<ProductAttributeDto> getProductAttributes() {
         return productAttributes;
     }
 
-    public void setProductAttributes(List<ProductAttribute> productAttributes) {
+    public void setProductAttributes(List<ProductAttributeDto> productAttributes) {
         this.productAttributes = productAttributes;
     }
 }

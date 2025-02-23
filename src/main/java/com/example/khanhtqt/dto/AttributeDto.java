@@ -1,29 +1,28 @@
-package com.example.khanhtqt.entity;
+package com.example.khanhtqt.dto;
 
-import jakarta.persistence.*;
-import lombok.*;
+import com.example.khanhtqt.entity.AttributeValue;
+import jakarta.persistence.Column;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
-@Entity
-@Table(name = "attributes")
 
-public class Attribute {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class AttributeDto {
     private Long id;
 
-    @Column(nullable = false, unique = true)
+
     private String name; // VD: Color, Size, Material
 
-    @OneToMany(mappedBy = "attribute", cascade = CascadeType.ALL, orphanRemoval = true)
+
     private List<AttributeValue> attributeValues;
 
-    public Attribute() {
+    public AttributeDto() {
     }
 
-    public Attribute(Long id, String name, List<AttributeValue> attributeValues) {
+    public AttributeDto(Long id, String name, List<AttributeValue> attributeValues) {
         this.id = id;
         this.name = name;
         this.attributeValues = attributeValues;
